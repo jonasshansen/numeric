@@ -1,0 +1,1 @@
+graph -T png out.txt Makefile > plot.png

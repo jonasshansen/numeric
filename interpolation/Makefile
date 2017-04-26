@@ -4,17 +4,20 @@ CC = gcc
 LDLIBS = -lm
 LDLIBS += $$(gsl-config --libs)
 OBJS = main.o linterp.o qspline.o
+FORMAT = png
+SCRIPT = log.plot
 
-default: out.txt
-	cat out.txt
+
+plot.$(FORMAT): out.txt Makefile
+	graph -T $(FORMAT) out.txt > plot.$(FORMAT)
+
 
 out.txt: main
-	./main > out.txt
-
+	./$^ > out.txt
 main: $(OBJS) qspline.h
 	$(CC) $(CFLAGS) $(OBJS) $(LDLIBS) -o $@
-
 main.o: main.c qspline.h
+
 
 linterp.o: linterp.c
 
@@ -22,4 +25,4 @@ qspline.o: qspline.c
 
 .PHONY: clean
 clean:	
-	rm -rf $(OBJS) main out.txt
+	rm -rf $(OBJS) main *.txt *.png
