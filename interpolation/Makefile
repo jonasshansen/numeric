@@ -1,13 +1,25 @@
 CFLAGS = -std=gnu99 -Wall 
 CFLAGS += $$(gsl-config --cflags)
-LDLIBS = $$(gsl-config --libs)
+CC = gcc
+LDLIBS = -lm
+LDLIBS += $$(gsl-config --libs)
+OBJS = main.o linterp.o qspline.o
 
-main: main.o
-	$(CC) $(CFLAGS) $< $(LDLIBS) -o $@
+default: out.txt
+	cat out.txt
 
-main.o: main.c
-	$(CC) $(CFLAGS) -c $<
+out.txt: main
+	./main > out.txt
+
+main: $(OBJS) qspline.h
+	$(CC) $(CFLAGS) $(OBJS) $(LDLIBS) -o $@
+
+main.o: main.c qspline.h
+
+linterp.o: linterp.c
+
+qspline.o: qspline.c
 
 .PHONY: clean
 clean:	
-	rm -rf main.o main
+	rm -rf $(OBJS) main out.txt
