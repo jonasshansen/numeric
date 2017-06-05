@@ -71,6 +71,29 @@ gsl_vector *Ax = gsl_vector_calloc(m);
 gsl_blas_dgemv(CblasNoTrans,1.0,A2copy,x,0.0,Ax);
 printv(Ax);
 
+
+printf("\n---PART B---\n");
+gsl_matrix *A3 = gsl_matrix_calloc(m,m);
+for(int i=0;i<m;i++)for(int j=0;j<m;j++)gsl_matrix_set(A3,i,j,RND);
+gsl_matrix *A3copy = gsl_matrix_calloc(m,m);
+gsl_matrix_memcpy(A3copy,A3);
+gsl_matrix *R3 = gsl_matrix_calloc(m,m);
+gsl_matrix *B3 = gsl_matrix_calloc(m,m);
+
+qr_gs_decomp(A3,R3);
+qr_gs_decomp_inverse(A3,R3,B3);
+
+printf("A:\n");
+printm(A3copy);
+printf("B (inverse of A):\n");
+printm(A3);
+printf("AB:\n");
+gsl_matrix *AB = gsl_matrix_calloc(m,m);
+gsl_blas_dgemm(CblasNoTrans,CblasNoTrans,1.0,A3copy,B3,0.0,AB);
+printm(AB);
+
+
+
 gsl_matrix_free(A);
 gsl_matrix_free(R);
 gsl_matrix_free(qtq);
@@ -81,4 +104,9 @@ gsl_vector_free(b);
 gsl_matrix_free(A2copy);
 gsl_vector_free(x);
 gsl_vector_free(Ax);
+gsl_matrix_free(A3);
+gsl_matrix_free(R3);
+gsl_matrix_free(B3);
+gsl_matrix_free(A3copy);
+gsl_matrix_free(AB);
 }
