@@ -1,0 +1,16 @@
+
+Random symmetric matrix A: 
+  0.840  0.394  0.783  0.798
+  0.394  0.912  0.198  0.335
+  0.783  0.198  0.768  0.278
+  0.798  0.335  0.278  0.554
+
+Result of Jacobi diagonalization: 
+Number of sweeps: 5
+Eigenvalues:
+ -0.241  0.352  0.729  2.234
+V^T*A*V should be a diagonal matrix with the above eigenvalues on the diagonal:
+ -0.241 -0.000  0.000  0.000
+ -0.000  0.352  0.000 -0.000
+  0.000 -0.000  0.729  0.000
+ -0.000 -0.000  0.000  2.234
