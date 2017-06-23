@@ -5,3 +5,7 @@ Initial vector x:         -2          8
 ncalls = 3438
       solution x:          1          1 
             f(x):  1.461e-06 -1.058e-06 
+Root finding:
+Extremum of the Himmelblau's function:
+Initial vector x:        2.9          1 
+            f(x): 8.601e-317     -15.58 
