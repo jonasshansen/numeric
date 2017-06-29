@@ -15,4 +15,7 @@ Here it is tested whether the rescaling of the absolute accuracy goal with sqrt(
 The implemented adaptive integration algorithm is applied to four different functions whose integrals over the region 0 to 1 are known (2, -4, 2/3 and pi).
 This is done with both the sqrt(2) and the 2 rescaling.
 The resulting estimated and actual errors as well as number of calls in the nested function are printed to out.txt.
-Here it is evident that adaptive integration with scaling=sqrt(2) needs less calls to reach the same estimated error as with scaling=2. The resulting actual error is, however larger.
+Here it is evident that adaptive integration with scaling=sqrt(2) needs less calls to reach the same estimated error as with scaling=2. The resulting actual error is, however, larger due to the reduced number of calls.
+The scaling=2 corresponds to correlated errors while scaling=sqrt(2) corresponds to uncorrelated errors.
+Both overestimate the error.
+

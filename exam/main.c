@@ -9,12 +9,13 @@ double adapt24(double f(double),double a, double b,
 
 	double f1=f(a+(b-a)/6), f4=f(a+5*(b-a)/6);
 	double Q=(2*f1+f2+f3+2*f4)/6*(b-a), q=(f1+f4+f2+f3)/4*(b-a); // Higher and lower order rules
-	double tolerance=acc+eps*fabs(Q), error=fabs(Q-q)/2; // Estimate error
+	double tolerance=acc+eps*fabs(Q);
+	double error=fabs(Q-q)/2; // Estimate error
 
 	if(error < tolerance) return Q;
 	else{ // If the error is larger than the tolerance, subdivide the interval
 		double Q1=adapt24(f,a,(a+b)/2,acc/scaling,eps,f1,f2,nrec+1,scaling);
-		double Q2=adapt24(f,(a+b)/2,b,acc/scaling,eps,f3,f4,nrec+1,scaling);
+		double Q2=adapt24(f,(a+b)/2,b,acc/scaling,eps,f3,f4,nrec+1,scaling);	
 		return Q1+Q2; 
 	}
 }
@@ -41,6 +42,7 @@ int main(){  // Uses gcc nested functions
 	double scaling = sqrt(2.0); // Rescaling of the absolute accuracy goal
 
 	int calls=0; // Depth of nesting (number of calls)
+
 
 	// Integral of 1/sqrt(x) from 0 to 1
 	double a=0,b=1,acc=0.001,eps=0.001;
