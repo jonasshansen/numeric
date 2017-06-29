@@ -1,0 +1,18 @@
+Exam project for the course Numerical Methods, Q4 2017, Aarhus University
+Jonas Svenstrup Hansen, study no. 201205674
+
+22. Adaptive numerical integration: error scaling
+Investigate whether the errors on sub-intervals in the adaptive numerical integration are indeed uncorrelated.
+
+- Implement an adaptive integrator which under recursion rescales the absolute accuracy goal with factor 2 (rather than sqrt(2)).
+
+- Investigate which algorithm (with factor 2 or with factor sqrt(2)) provides a better estimate of the error by computing some integrals with known values and comparing the errors reported by the integrator with the actual errors.
+
+
+Adaptive integration is a quadrature algorithm that subdivides the integration intervals into adaptively determined subintervals in order to reach the highest number of subdivisions in the important areas of the function, determined by the estimated error. 
+Here it is tested whether the rescaling of the absolute accuracy goal with sqrt(2) instead of 2 results in a better estimate of the error.
+
+The implemented adaptive integration algorithm is applied to four different functions whose integrals over the region 0 to 1 are known (2, -4, 2/3 and pi).
+This is done with both the sqrt(2) and the 2 rescaling.
+The resulting estimated and actual errors as well as number of calls in the nested function are printed to out.txt.
+Here it is evident that adaptive integration with scaling=sqrt(2) needs less calls to reach the same estimated error as with scaling=2. The resulting actual error is, however larger.
